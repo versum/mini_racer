@@ -4,7 +4,8 @@ gem 'libv8-node', MiniRacer::LIBV8_NODE_VERSION
 require 'libv8-node'
 
 Gem.path.each do |gem_home|
-  xsystem "test -d #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM}-musl && ln -s #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM}-musl #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM}"
+  xsystem "test -d #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM}-musl && test ! -d #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM} && ln -s #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM}-musl #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM}"
+  xsystem "test -d #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM} && test ! -d #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}-musl/vendor/v8/#{RUBY_PLATFORM} && ln -s #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}/vendor/v8/#{RUBY_PLATFORM} #{gem_home}/gems/libv8-node-16.10.0.0-#{RUBY_PLATFORM}-musl/vendor/v8/#{RUBY_PLATFORM}"
 end
 
 IS_DARWIN = RUBY_PLATFORM =~ /darwin/
